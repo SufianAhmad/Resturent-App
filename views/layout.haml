@@ -1,0 +1,14 @@
+%html
+  %head
+    %title Resturant
+  %body
+    %h1
+      %a{ href: "/" } Resturant
+
+      / flash messages to print appropriate div
+      - if flash[:notice]
+          .flash.notice=flash[:notice]
+      - if flash[:alert]
+          .flash.alert=flash[:alert]
+
+      =yield
