@@ -1,6 +1,8 @@
 class App < Sinatra::Base
   enable :sessions
   use Rack::Flash
+  register Sinatra::Namespace
+
   get "/" do
     "Hello World.."
   end
@@ -13,8 +15,8 @@ class App < Sinatra::Base
     # new orders placed by waiters
     get "/new" do
       # available dishes
-      @dishes = []
-      haml %s( orders/new )
+      @dishes = DISHES
+      haml %s(orders/new)
     end
   end
 end
