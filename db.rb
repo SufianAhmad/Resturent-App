@@ -1,18 +1,20 @@
-env = ENV["RACK_ENV"]
-url = Dir.pwd + "/db/#{env}"
-DataMapper.setup :defualt, "sqlite://#{url}/sqlite3"
+env = ENV["RACK_ENV"] || "development"
+url = "sqlite://#{Dir.pwd}/db/#{env}.sqlite3"
+DataMapper.setup :default, url
 
-class Orders
+class Order
   include DataMapper::Resource
   property :id, Serial
   property :client, String
-  has_n :order_items
+
+  has n, :order_items
 end
 
 class OrderItem
   include DataMapper::Resource
   property :id, Serial
   property :dish_id, Integer
+  
   belongs_to :order
 end
 
