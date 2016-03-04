@@ -18,5 +18,17 @@ class App < Sinatra::Base
       @dishes = DISHES
       haml %s(orders/new)
     end
+
+    # post orders
+    post do
+      # binding.pry
+      @order = Order.create! params[:order]
+      params[:dishes].each do |dish|
+        OrderItem.create! order_id: @order, dish_id: dish
+      end
+
+      flash[:notice] = "Thanks for placing order."
+      redirect "/orders/new"
+    end
   end
 end

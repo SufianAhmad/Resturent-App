@@ -1,4 +1,5 @@
 Bundler.require
-require "./app"
+require "./db"
 require "./dishes"
+require "./app"
 run App
