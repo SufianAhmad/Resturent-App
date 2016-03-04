@@ -1,12 +1,12 @@
 %h2 New Order
-%form(action="/orders" method="post")
+%form(action= "/orders" method= "post")
   %ul
-    -@dishes.each do |dish|
+    - @dishes.each do |dish|
       %li
         %input{ type: "checkbox", name: "dishes[]", value: dish[:id] }
-        =dish[:name]
+        = dish[:name]
         (#{dish[:category]})
         &mdash;
-        =dish[:price]
+        = dish[:price]
   %p
     %input( type= "submit" value= "Place Order" )
