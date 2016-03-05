@@ -32,5 +32,12 @@ class App < Sinatra::Base
       flash[:notice] = "Thanks for placing order."
       redirect "/orders/new"
     end
+
+    put "/:id.json" do |id|
+      @order = Order.get id
+      @order.update done: params[:order][:done]
+      json message: "Order successfully updated.."
+    end
+
   end
 end

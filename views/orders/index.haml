@@ -1,6 +1,8 @@
 %table.row
   - @orders.each do |order|
     %tr
+      %td
+        %input{ type: "checkbox", id: "order-#{order.id}", data: { id: order.id }, class: "mark-done"}
       %td=order.client
       %td
         %ul

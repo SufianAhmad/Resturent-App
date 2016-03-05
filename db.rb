@@ -6,6 +6,7 @@ class Order
   include DataMapper::Resource
   property :id, Serial
   property :client, String
+  property :done, Boolean
 
   has n, :order_items
 end
