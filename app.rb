@@ -7,9 +7,11 @@ class App < Sinatra::Base
     "Hello World.."
   end
   namespace "/orders" do
-    # orders
+    # orders list for cook
     get do
-
+      @orders = Order.all
+      @dishes = DISHES
+      haml %s(orders/index)
     end
 
     # new orders placed by waiters
@@ -24,11 +26,18 @@ class App < Sinatra::Base
       # binding.pry
       @order = Order.create! params[:order]
       params[:dishes].each do |dish|
-        OrderItem.create! order_id: @order, dish_id: dish
+        OrderItem.create! order_id: @order.id, dish_id: dish
       end
 
       flash[:notice] = "Thanks for placing order."
       redirect "/orders/new"
     end
+
+    put "/:id.json" do |id|
+      @order = Order.get id
+      @order.update done: params[:order][:done]
+      json message: "Order successfully updated.."
+    end
+
   end
 end
