@@ -1,0 +1,9 @@
+%table.row
+  - @orders.each do |order|
+    %tr
+      %td=order.client
+      %td
+        %ul
+          -order.order_items.each do |item|
+            %li
+              =@dishes.select{ |dish| dish[:id] == item.dish_id }.first[:name]

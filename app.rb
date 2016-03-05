@@ -7,9 +7,11 @@ class App < Sinatra::Base
     "Hello World.."
   end
   namespace "/orders" do
-    # orders
+    # orders list for cook
     get do
-
+      @orders = Order.all
+      @dishes = DISHES
+      haml %s(orders/index)
     end
 
     # new orders placed by waiters
