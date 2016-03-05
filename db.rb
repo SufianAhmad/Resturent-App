@@ -14,7 +14,6 @@ class OrderItem
   include DataMapper::Resource
   property :id, Serial
   property :dish_id, Integer
-  
   belongs_to :order
 end
 
