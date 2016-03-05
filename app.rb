@@ -2,6 +2,7 @@ class App < Sinatra::Base
   enable :sessions
   use Rack::Flash
   register Sinatra::Namespace
+  helpers Sinatra::JSON
 
   get "/" do
     "Hello World.."
@@ -33,9 +34,9 @@ class App < Sinatra::Base
       redirect "/orders/new"
     end
 
-    put "/:id.json" do |id|
+    post "/:id.json" do |id|
       @order = Order.get id
-      @order.update done: params[:order][:done]
+      @order.update done: params[:done]
       json message: "Order successfully updated.."
     end
 

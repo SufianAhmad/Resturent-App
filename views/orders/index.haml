@@ -2,7 +2,7 @@
   - @orders.each do |order|
     %tr
       %td
-        %input{ type: "checkbox", id: "order-#{order.id}", data: { id: order.id }, class: "mark-done"}
+        %input{ type: "checkbox", id: "order-#{order.id}", data: { id: order.id }, class: "mark-done", checked: order.done }
       %td=order.client
       %td
         %ul
