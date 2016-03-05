@@ -24,7 +24,7 @@ class App < Sinatra::Base
       # binding.pry
       @order = Order.create! params[:order]
       params[:dishes].each do |dish|
-        OrderItem.create! order_id: @order, dish_id: dish
+        OrderItem.create! order_id: @order.id, dish_id: dish
       end
 
       flash[:notice] = "Thanks for placing order."

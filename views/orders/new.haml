@@ -1,7 +1,7 @@
 %h2 New Order
 %form(action= "/orders" method= "post")
   %p
-    %input( type= "text" name= "order[client]" value= "What is the client's name" )
+    %input( type= "text" name= "order[client]" Placeholder= "What is the client's name" )
   %ul
     - @dishes.each do |dish|
       %li
